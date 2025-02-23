@@ -7,7 +7,7 @@ static void DumpProcessModules(HANDLE hProcess)
 {
 	HMODULE hModules[4096];
 	DWORD bytesNeeded;
-	if (!EnumProcessModules(hProcess, hModules, sizeof(hModules), &bytesNeeded))
+	if (!EnumProcessModulesEx(hProcess, hModules, sizeof(hModules), &bytesNeeded, LIST_MODULES_ALL))
 	{
 		printf("Failed in EnumProcessModules (%u)\n", GetLastError());
 		return;

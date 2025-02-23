@@ -7,9 +7,9 @@ NTSTATUS ProcessPowerDeviceControl(PDEVICE_OBJECT, PIRP);
 
 extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath)
 {
+	UNREFERENCED_PARAMETER(RegistryPath);
 	KdPrint(("ProcessPower: DriverEntry\n"));
 	KdPrint(("Registry path: %wZ\n", RegistryPath));
-	UNREFERENCED_PARAMETER(RegistryPath);
 
 	DriverObject->DriverUnload = ProcessPowerUnload;
 

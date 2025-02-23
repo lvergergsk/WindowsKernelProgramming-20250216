@@ -1,6 +1,6 @@
 #include <Windows.h>
 #include <stdio.h>
-#include "../WindowsKernelProgramming002/ProcessPowerCommon.h"
+#include "..\WindowsKernelProgramming002\ProcessPowerCommon.h"
 #include <Psapi.h>
 
 static void DumpProcessModules(HANDLE hProcess)
@@ -20,7 +20,7 @@ static void DumpProcessModules(HANDLE hProcess)
 	SYSTEM_INFO sysInfo;
 	GetSystemInfo(&sysInfo);
 
-	for (int i = 0; i < numModules; i++)
+	for (unsigned int i = 0; i < numModules; i++)
 	{
 		if (GetModuleBaseName(hProcess, hModules[i], name, _countof(name)))
 		{

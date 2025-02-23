@@ -17,11 +17,19 @@ static void DumpProcessModules(HANDLE hProcess)
 	printf("Number of modules: %u\n", numModules);
 
 	WCHAR name[MAX_PATH];
+	SYSTEM_INFO sysInfo;
+	GetSystemInfo(&sysInfo);
+
 	for (int i = 0; i < numModules; i++)
 	{
 		if (GetModuleBaseName(hProcess, hModules[i], name, _countof(name)))
 		{
-			printf("Module 0x%p : %ws\n", hModules[i], name);
+			MODULEINFO modInfo;
+			if (GetModuleInformation(hProcess, hModules[i], &modInfo, sizeof(modInfo)))
+			{
+				BOOL is32Bit = (modInfo.EntryPoint < sysInfo.lpMaximumApplicationAddress);
+				printf("Module 0x%p : %ws (%s-bit)\n", hModules[i], name, is32Bit ? "32" : "64");
+			}
 		}
 		else
 		{

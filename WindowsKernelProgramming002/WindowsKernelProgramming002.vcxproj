@@ -92,6 +92,9 @@
   <ItemGroup>
     <ClCompile Include="ProcessPower.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProcessPowerCommon.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

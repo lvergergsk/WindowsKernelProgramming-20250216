@@ -19,14 +19,13 @@ static void DumpProcessModules(HANDLE hProcess)
 	WCHAR name[MAX_PATH];
 	for (int i = 0; i < numModules; i++)
 	{
-		printf("Module 0x%p\n", hModules[i]);
 		if (GetModuleBaseName(hProcess, hModules[i], name, _countof(name)))
 		{
-			printf("Module %d: %ws\n", i, name);
+			printf("Module 0x%p : %ws\n", hModules[i], name);
 		}
 		else
 		{
-			printf("Failed in GetModuleBaseName (%u)\n", GetLastError());
+			printf("Failed in GetModuleBaseName for module 0x%p (%u)\n", hModules[i], GetLastError());
 		}
 		printf("\n");
 	}
@@ -48,7 +47,6 @@ int main(int argc, const char* argv[])
 	}
 	else {
 		printf("Failed in OpenProcess (%u)\n", GetLastError());
-		return 1;
 	}
 
 	HANDLE hDevice = CreateFile(L"\\\\.\\ProcessPower", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, nullptr);
@@ -71,7 +69,7 @@ int main(int argc, const char* argv[])
 		return 1;
 	}
 	printf("Success!\n");
-	
+
 	DumpProcessModules(output.hProcess);
 
 	CloseHandle(output.hProcess);

@@ -27,5 +27,4 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 VOID UnloadDriver(PDRIVER_OBJECT DriverObject)
 {
     KdPrint(("006 UnloadDriver\n"));
-    IoDeleteDevice(DriverObject->DeviceObject);
 }

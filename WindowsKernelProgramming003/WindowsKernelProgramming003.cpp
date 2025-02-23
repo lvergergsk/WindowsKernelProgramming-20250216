@@ -57,7 +57,7 @@ int main(int argc, const char* argv[])
 		printf("Failed in OpenProcess (%u)\n", GetLastError());
 	}
 
-	HANDLE hDevice = CreateFile(L"\\\\.\\ProcessPower", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, nullptr);
+	HANDLE hDevice = CreateFile(L"\\\\.\\WindowsKernelProgramming002", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, nullptr);
 	if (hDevice == INVALID_HANDLE_VALUE)
 	{
 		printf("Failed in CreateFile (%u)\n", GetLastError());

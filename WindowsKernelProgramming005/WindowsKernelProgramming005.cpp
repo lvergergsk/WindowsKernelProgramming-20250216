@@ -12,7 +12,7 @@ int main(int argc ,const char* argv[])
 	int tid = atoi(argv[1]);
 	int priority = atoi(argv[2]);
 
-	HANDLE hDevice = CreateFile(L"\\\\.\\Booster", GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+	HANDLE hDevice = CreateFile(L"\\\\.\\WindowsKernelProgramming004", GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 	if (hDevice == INVALID_HANDLE_VALUE) {
 		printf("Error opening device (%u)\n", GetLastError());
 		return 1;

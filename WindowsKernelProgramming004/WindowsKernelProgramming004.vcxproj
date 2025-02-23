@@ -90,7 +90,7 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="booster.cpp" />
+    <ClCompile Include="WindowsKernelProgramming004.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoosterCommon.h" />

@@ -28,7 +28,7 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 	DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = ProcessPowerDeviceControl;
 
 	UNICODE_STRING devName;
-	RtlInitUnicodeString(&devName, L"\\Device\\ProcessPower");
+	RtlInitUnicodeString(&devName, L"\\Device\\WindowsKernelProgramming002");
 	PDEVICE_OBJECT DeviceObject;
 	status = IoCreateDevice(DriverObject, 0, &devName, FILE_DEVICE_UNKNOWN, 0, FALSE, &DeviceObject);
 	if (!NT_SUCCESS(status))
@@ -37,7 +37,7 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 		return status;
 	}
 
-	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\ProcessPower");
+	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\WindowsKernelProgramming002");
 
 	status = IoCreateSymbolicLink(&symLink, &devName);
 	if (!NT_SUCCESS(status))
@@ -52,7 +52,7 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 void ProcessPowerUnload(PDRIVER_OBJECT DriverObject)
 {
 	KdPrint(("ProcessPower: ProcessPowerUnload\n"));
-	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\ProcessPower");
+	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\WindowsKernelProgramming002");
 	IoDeleteSymbolicLink(&symLink);
 	IoDeleteDevice(DriverObject->DeviceObject);
 }

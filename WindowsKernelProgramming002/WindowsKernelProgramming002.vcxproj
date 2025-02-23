@@ -90,7 +90,7 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ProcessPower.cpp" />
+    <ClCompile Include="WindowsKernelProgramming002.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProcessPowerCommon.h" />

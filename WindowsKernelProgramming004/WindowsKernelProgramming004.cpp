@@ -16,7 +16,7 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 	DriverObject->MajorFunction[IRP_MJ_DEVICE_CONTROL] = BoosterDeviceControl;
 
 	PDEVICE_OBJECT DeviceObject;
-	UNICODE_STRING devName = RTL_CONSTANT_STRING(L"\\Device\\Booster");
+	UNICODE_STRING devName = RTL_CONSTANT_STRING(L"\\Device\\WindowsKernelProgramming004");
 	NTSTATUS status = IoCreateDevice(DriverObject, 0, &devName, FILE_DEVICE_UNKNOWN, 0, FALSE, &DeviceObject);
 	if (!NT_SUCCESS(status))
 	{
@@ -24,7 +24,7 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 		return status;
 	}
 
-	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\Booster");
+	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\WindowsKernelProgramming004");
 	status = IoCreateSymbolicLink(&symLink, &devName);
 	if (!NT_SUCCESS(status))
 	{
@@ -38,7 +38,7 @@ extern "C" NTSTATUS DriverEntry(_In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_
 void BoosterUnload(PDRIVER_OBJECT DriverObject)
 {
 	KdPrint(("Booster: BoosterUnload\n"));
-	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\Booster");
+	UNICODE_STRING symLink = RTL_CONSTANT_STRING(L"\\??\\WindowsKernelProgramming004");
 	IoDeleteSymbolicLink(&symLink);
 	IoDeleteDevice(DriverObject->DeviceObject);
 }
